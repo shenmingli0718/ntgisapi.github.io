@@ -93,6 +93,18 @@ app.get('/', (req, res) => {
     res.send('(互動式GIS) Hello, World!');
 });
 
+// 傳遞 newtpe_tourist_att.csv
+app.get('/get_tourist_data', (req, res) => {
+  fs.readFile('./static/newtpe_tourist_att.csv', 'utf8', (err, data) => {
+      if (err) {
+          res.status(500).send({ error: '無新北觀光旅遊檔' });
+          return;
+      }
+      const rows = data.split('\n').map(row => row.split(','));
+      res.json(rows);
+  });
+});
+
 // 確保上傳目錄存在
 if (!fs.existsSync(UPLOAD_DIR)) {
     fs.mkdirSync(UPLOAD_DIR);
