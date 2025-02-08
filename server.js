@@ -95,14 +95,20 @@ app.get('/', (req, res) => {
 
 // 傳遞 newtpe_tourist_att.csv
 app.get('/get_tourist_data', (req, res) => {
-  fs.readFile('./static/newtpe_tourist_att.csv', 'utf8', (err, data) => {
-      if (err) {
-          res.status(500).send({ error: '無新北觀光旅遊檔' });
-          return;
-      }
-      const rows = data.split('\n').map(row => row.split(','));
-      res.json(rows);
-  });
+  const records = [];
+  
+  fs.createReadStream(CSV_FILE)
+      .pipe(csvParser())  // ✅ Proper CSV parsing
+      .on('data', (row) => {
+          records.push(row);
+      })
+      .on('end', () => {
+          res.json(records);  // ✅ Return structured JSON
+      })
+      .on('error', (error) => {
+          console.error("新北觀光旅遊檔讀檔錯誤:", error);
+          res.status(500).json({ error: '新北觀光旅遊檔讀檔錯誤' });
+      });
 });
 
 // 確保上傳目錄存在
