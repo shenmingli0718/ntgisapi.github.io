@@ -90,7 +90,7 @@ const getCurrentTimestamp = () => {
 
 // 簡單的 GET 路由
 app.get('/', (req, res) => {
-    res.send('(互動式GIS) Hello, World!');
+    res.send('(互動式GIS) Hello, World! 114/02/08');
 });
 
 // 傳遞 newtpe_tourist_att.csv
