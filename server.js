@@ -13,8 +13,8 @@ const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 const app = express();
 
 // 使用 express.json() 解析 JSON 請求主體
-// app.use(express.json());
-app.use('/static', express.static(path.join(__dirname, 'static')));
+app.use(express.json());
+// app.use('/static', express.static(path.join(__dirname, 'static')));
 
 
 app.use(cors());  // 啟用 CORS,允許跨域訪問
