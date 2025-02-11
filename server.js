@@ -245,6 +245,39 @@ app.get('/uploads', (req, res) => {
     });
 });
 
+// API: 提供圖片預覽
+app.get('/preview/:subid/:filename', (req, res) => {
+  const { subid, filename } = req.params;
+  
+  // 確認檔案路徑
+  const filePath = path.join(UPLOAD_DIR, subid, filename);
+
+  // 檢查檔案是否存在
+  if (!fs.existsSync(filePath)) {
+      console.error(`檔案未找到: ${filePath}`);
+      return res.status(404).send('檔案未找到');
+  }
+
+  // 設定適當的 MIME 類型
+  const contentType = getContentType(filename);
+  res.setHeader('Content-Type', contentType);
+
+  // 直接回傳圖片
+  res.sendFile(filePath);
+});
+
+// 輔助函式：根據檔案副檔名返回對應的 MIME 類型
+function getContentType(filename) {
+  const ext = path.extname(filename).toLowerCase();
+  switch (ext) {
+      case '.jpg': case '.jpeg': return 'image/jpeg';
+      case '.png': return 'image/png';
+      case '.gif': return 'image/gif';
+      case '.webp': return 'image/webp';
+      default: return 'application/octet-stream';
+  }
+}
+
 // API: 提供照片下載
 app.get('/uploads/:subid/:filename', (req, res) => {
     const { subid, filename } = req.params;
