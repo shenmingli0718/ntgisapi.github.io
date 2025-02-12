@@ -245,7 +245,7 @@ app.get('/uploads', (req, res) => {
     });
 });
 
-// API: 提供圖片預覽
+// API: 提供前端圖片預覽
 app.get('/preview/:subid/:filename', (req, res) => {
   const { subid, filename } = req.params;
   
