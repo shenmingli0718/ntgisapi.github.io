@@ -81,6 +81,7 @@ const readCSV = async () => {
 // 格式化當前時間
 const getCurrentTimestamp = () => {
   const now = new Date();
+  now.setHours(now.getHours() + 8); // 轉換為台灣時間
   const yyyy = now.getFullYear();
   const mm = String(now.getMonth() + 1).padStart(2, '0');
   const dd = String(now.getDate()).padStart(2, '0');
