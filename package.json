@@ -12,6 +12,7 @@
     "cors": "^2.8.5",
     "csv-parser": "^3.1.0",
     "csv-writer": "^1.6.0",
+    "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "fs": "^0.0.1-security",
     "fs-extra": "^11.3.0",
@@ -30,5 +31,6 @@
   "bugs": {
     "url": "https://github.com/shenmingli0718/ntgisapi.github.io/issues"
   },
-  "homepage": "https://github.com/shenmingli0718/ntgisapi.github.io#readme"
+  "homepage": "https://github.com/shenmingli0718/ntgisapi.github.io#readme",
+  "devDependencies": {}
 }
