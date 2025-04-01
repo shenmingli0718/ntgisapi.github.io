@@ -1,5 +1,6 @@
 const cors = require('cors');  // 引入 cors 套件
 const express = require('express');
+const dotenv = require('dotenv'); 
 //const cors = require('cors');  // 引入 cors 套件
 const multer = require('multer');
 const fs = require('fs');
@@ -94,6 +95,11 @@ const getCurrentTimestamp = () => {
 // 簡單的 GET 路由
 app.get('/', (req, res) => {
     res.send('(互動式GIS) Hello, World! 114/02/08');
+});
+
+// 獲取環境變數domain
+app.get("/env", (req, res) => {
+  res.json({ domain: process.env.DOMAIN });
 });
 
 // 傳遞 newtpe_tourist_att.csv
